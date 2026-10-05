@@ -1,0 +1,3 @@
+azure-eventhub
+pymongo
+python-dotenv

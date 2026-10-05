@@ -1,0 +1,24 @@
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: mongodb-streamvolt
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data_sv:/data/db
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase-streamvault
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+volumes:
+  mongo_data_sv:
